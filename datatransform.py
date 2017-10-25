@@ -17,3 +17,11 @@ scores = cross_validation.cross_val_score(lr, X, Y, cv = cv)
 print("mean R2: %-.2f (+/- %0.2f)" % (scores.mean(), scores.std()*2))
 pred = cross_validation.cross_val_predict(lr, X, Y, cv = cv )
 print 'error: ", mean_squared_error(Y, pred)
+
+x = np.random.random((3,2)) - 0.5
+
+%timeit -n10 np.maximum(x,0,x)
+%timeit -n10 np.maximum(x,0)
+%timeit -n10 x*(x>0)
+%timeit -n10 (abs(x) +x)/2
+%timeit -n10 x[x<0]=0
