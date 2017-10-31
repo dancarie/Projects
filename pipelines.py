@@ -1,6 +1,9 @@
 import os
 import pandas as pd
 import requests
+from sklearn.cross_validation import cross_val_score, StratifiedKFold
+from sklearn.svm import LinearSVC
+
 PATH = r'/Users/danka/Projects/datatrfrm'
 r =
 requests.get('https://archive.ics.uci.edu/ml/machine-learning-databases/iri
