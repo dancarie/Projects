@@ -13,3 +13,6 @@ with open(PATH + 'iris.data', 'w') as f:
 os.chdir(PATH)
 df = pd.read_csv(PATH + 'iris.data', names=['sepal length', 'sepal width',
 'petal length', 'petal width', 'class'])
+import requests
+r = requests.get(r"https://api.github.com/users/acombs/starred")
+r.json()
