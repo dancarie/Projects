@@ -16,3 +16,4 @@ df = pd.read_csv(PATH + 'iris.data', names=['sepal length', 'sepal width',
 import requests
 r = requests.get(r"https://api.github.com/users/acombs/starred")
 r.json()
+plt.style.use('ggplot')
