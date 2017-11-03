@@ -17,3 +17,27 @@ import requests
 r = requests.get(r"https://api.github.com/users/acombs/starred")
 r.json()
 plt.style.use('ggplot')
+
+from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import
+DesiredCapabilities
+   from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
+%matplotlib inline
+Next, we'll set up the code to instantiate the browser object. It is this object that will pull
+down the page for us. You can select the airports or regions that you'd like by running a
+search in your browser and copying the URL. Here, I'm searching for trips between New
+York airports and several cities in Asia:
+url =
+"https://www.google.com/flights/explore/#explore;f=JFK,EWR,LGA;t=
+HND,NRT,TPE,HKG,KIX;s=1;li=8;lx=12;d=2016-04-01"
+driver = webdriver.PhantomJS()
+dcap = dict(DesiredCapabilities.PHANTOMJS)
+dcap["phantomjs.page.settings.userAgent"] = ("Mozilla/5.0
+(Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like
+Gecko) Chrome/46.0.2490.80 Safari/537.36")
+driver = webdriver.PhantomJS(desired_capabilities=dcap,
+service_args=['--ignore-ssl-errors=true'])
+driver.implicitly_wait(20)
+driver.get(url)          
+             
