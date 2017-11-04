@@ -40,4 +40,5 @@ driver = webdriver.PhantomJS(desired_capabilities=dcap,
 service_args=['--ignore-ssl-errors=true'])
 driver.implicitly_wait(20)
 driver.get(url)          
+driver.save_screenshot(r'flight_explorer.png')
              
