@@ -49,5 +49,9 @@ credentials = SignedJwtAssertionCredentials(json_key['client_email'],
 json_key['private_key'].encode(), scope)
 gc = gspread.authorize(credenti                                          
  
-  
+  from sklearn.metrics.pairwise import chi2_kernel
+k_sim = chi2_kernel(X[0].reshape(1,-1), X)
+kf = pd.DataFrame(k_sim).T
+kf.columns = ['similarity']
+kf.sort_values('similarity', ascending=False)
              
