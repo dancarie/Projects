@@ -54,4 +54,12 @@ k_sim = chi2_kernel(X[0].reshape(1,-1), X)
 kf = pd.DataFrame(k_sim).T
 kf.columns = ['similarity']
 kf.sort_values('similarity', ascending=False)
+   import sys
+import pandas as pd
+import numpy as np
+import requests
+from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import
+DesiredCapabilities
+from selenium.webdriver.common.by import By                    
              
