@@ -37,6 +37,13 @@ dcap["phantomjs.page.settings.userAgent"] = ("Mozilla/5.0
 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like
 Gecko) Chrome/46.0.2490.80 Safari/537.36")
 driver = webdriver.PhantomJS(desired_capabilities=dcap,
+ ipos.loc[ipos['Lead Mgr'].str.contains('Leerink'), 'Lead Mgr'] = 'Leerink
+Partners'
+ipos.loc[ipos['Lead Mgr'].str.contains('Lynch\xca'), 'Lead Mgr'] = 'Merrill
+Lynch'
+After this process is complete, you can run the following again to see the updated list:
+for n in pd.DataFrame(ipos['Lead Mgr'].unique(),
+columns=['Name']).sort_values('Name')['Name']:                            
 service_args=['--ignore-ssl-errors=true'])
 driver.implicitly_wait(20)
 driver.get(url)          
