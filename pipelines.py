@@ -110,4 +110,14 @@ json_key = json.load(open(r'/PATH_TO_KEY/KEY.json'))
 scope = ['https://spreadsheets.google.com/feeds']
 credentials = SignedJwtAssertionCredentials(json_key['client_email'],
 json_key['private_key'].encode(), scope)
-gc = gspread.authorize(credentials)
+gc = gspread.authorize(credentials
+Import re
+  plt.style.use('ggplot')
+%matplotlib inline
+pd.set_option("display.max_columns", 30)
+pd.set_option("display.max_colwidth", 100)
+pd.set_option("display.precision", 3)
+# Use the file location of your Import.io csv
+CSV_PATH = r"/Users/alexcombs/Downloads/magic.csv"
+df = pd.read_csv(CSV_PATH)
+df.columns
