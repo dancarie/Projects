@@ -121,3 +121,18 @@ pd.set_option("display.precision", 3)
 CSV_PATH = r"/Users/alexcombs/Downloads/magic.csv"
 df = pd.read_csv(CSV_PATH)
 df.columns
+# select those listings with a bath
+no_baths = su[~(su['propertyinfo_value'].str.contains('ba'))]
+# exclude those missing bathroom info
+sucln = su[~su.index.isin(no_baths.index)]
+Now we can move on to parse out the bedroom and bathroom information:
+# split using the bullet
+def parse_info(row):
+ if not 'sqft' in row:
+ br, ba = row.split('')[:2]
+ sqft = np.nan
+ else:
+ br, ba, sqft = row.split('.')[:3]
+ return pd.Series({'Beds': br, 'Baths': ba, 'Sqft': sqft})
+attr = sucln['propertyinfo_value'].apply(parse_info)
+attr
