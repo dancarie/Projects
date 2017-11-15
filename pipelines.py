@@ -136,3 +136,21 @@ def parse_info(row):
  return pd.Series({'Beds': br, 'Baths': ba, 'Sqft': sqft})
 attr = sucln['propertyinfo_value'].apply(parse_info)
 attr
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.svm import LinearSVC
+import schedule
+import time
+import pickle
+import json
+import gspread
+import requests
+from bs4 import BeautifulSoup
+from oauth2client.client import SignedJwtAssertionCredentials
+# create our fetching function
+def fetch_news():
+ try:
+ vect = pickle.load(open(r'/Users/alexcombs/Downloads/
+ news_vect_pickle.p', 'rb'))
+ model = pickle.load(open(r'/Users/alexcombs/Downloads/
+ news_model_pickle.p', 'rb'))
+ json_key = json.load(open(r'/Users/alexcombs/Downloads/
