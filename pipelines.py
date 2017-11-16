@@ -154,3 +154,16 @@ def fetch_news():
  model = pickle.load(open(r'/Users/alexcombs/Downloads/
  news_model_pickle.p', 'rb'))
  json_key = json.load(open(r'/Users/alexcombs/Downloads/
+usr_params = {'consumer_key':'my_consumer_key', 'code':
+ 'some_long_code'}
+ usr = requests.post('https://getpocket.com/v3/oauth/authorize',
+ data=usr_params)
+usr.content
+We'll use the following output code here to move on to retrieving the stories:
+First, we retrieve the stories tagged “n”:
+no_params = {'consumer_key':'my_consumer_key', 'access_token':
+ 'some_super_long_code',
+ 'tag': 'n'}
+ no_result = requests.post('https://getpocket.com/v3/get',
+ data=no_params)
+no_result.text
