@@ -167,3 +167,27 @@ no_params = {'consumer_key':'my_consumer_key', 'access_token':
  no_result = requests.post('https://getpocket.com/v3/get',
  data=no_params)
 no_result.text
+def check_flights():
+ url = "https://www.google.com/flights/explore/#explore;f=JFK,
+ EWR,LGA;t=HND,NRT,TPE,HKG,KIX;s=1;li=8;lx=12;d=2016-04-01"
+ driver = webdriver.PhantomJS()
+ dcap = dict(DesiredCapabilities.PHANTOMJS)
+ dcap["phantomjs.page.settings.userAgent"] = \
+ ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)
+AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36")
+ driver = webdriver.PhantomJS(desired_capabilities=dcap,
+ service_args=['--ignore-ssl-
+ errors=true'])
+ driver.get(url)
+ wait = WebDriverWait(driver, 20)
+ wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,
+ "span.FTWFGDB-v-c")))
+ s = BeautifulSoup(driver.page_source, "lxml")
+ best_price_tags = s.findAll('div', 'FTWFGDB-w-e')
+ # check if scrape worked - alert if it fails and shutdown
+ if len(best_price_tags) < 4:
+ print('Failed to Load Page Data')
+requests.post('https://maker.ifttt.com/trigger/fare_alert/with/key/MY_SECRE
+T_KEY',data={"value1": "script", "value2": "failed",
+"value3": ""})
+ sys.exit(0)
