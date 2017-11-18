@@ -191,3 +191,17 @@ requests.post('https://maker.ifttt.com/trigger/fare_alert/with/key/MY_SECRE
 T_KEY',data={"value1": "script", "value2": "failed",
 "value3": ""})
  sys.exit(0)
+               
+ye_params = {'consumer_key': 'my_consumer_key', 'access_token':
+ 'some_super_long_token',
+ 'tag': 'y'}
+yes_result = requests.post('https://getpocket.com/v3/get',
+data=yes_params)
+yes_jf = json.loads(yes_result.text)
+yes_jd = yes_jf['list']
+yes_urls=[]
+for i in yes_jd.values():
+ yes_urls.append(i.get('resolved_url'))
+yes_uf = pd.DataFrame(yes_urls, columns=['urls'])
+yes_uf = yes_uf.assign(wanted = lambda x: 'y')
+yes_uf
